@@ -1,5 +1,5 @@
-#     makefile for MOOG with all of the common block assignments;
-#     this is for a  64-bit linux machine
+#     makefile for MOOGSILENT with all of the common block assignments;
+#     this is for a 64-bit linux machine
 
 #     here are the object files
 OBJECTS = Abfind.o Abpop.o Abunplot.o Batom.o Begin.o Binary.o \
@@ -11,7 +11,7 @@ OBJECTS = Abfind.o Abpop.o Abunplot.o Batom.o Begin.o Binary.o \
 	Fluxplot.o Gammabark.o Getasci.o Getcount.o Getnum.o Getsyns.o \
 	Gridplo.o Gridsyn.o Infile.o Inlines.o Inmodel.o Invert.o \
 	Jexpint.o Lineinfo.o Lineabund.o Linlimit.o \
-	Makeplot.o Minimax.o Molquery.o Moog.o Mydriver.o \
+	Makeplot.o Minimax.o Molquery.o Moogsilent.o Mydriver.o \
 	Nansi.o Nearly.o Number.o Obshead.o \
 	Oneline.o Opaccouls.o OpacHelium.o OpacHydrogen.o \
 	Opacit.o Opacmetals.o Opacscat.o Params.o Partfn.o \
@@ -31,20 +31,19 @@ COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
         Quants.com Multimod.com Dampdat.com Source.com
 
 CC = cc
-#FC = f77 -Wall
-FC = gfortran -fno-range-check -w -fallow-argument-mismatch -ff2c
+FC = gfortran -m64 -Wall -O4 -ffixed-line-length-72 -ff2c -std=legacy
 
 # the following lines point to some needed libraries
-X11LIB = /etc
-SMLIB = /usr/local/lib
+X11LIB = /usr/lib64
+SMLIB = lib/smlib/
 
 #        here are the compilation and linking commands
-all: MOOG ;
+all: MOOGSILENT ;
 	@echo -----------------------------------------------------------------
 	@echo 
 	@echo make sure that you have entered the proper parameters
-	@echo for MOOG into the FORTRAN source driver
-	@echo routine Moog.f !!!!!!!!!!!!
+	@echo for MOOGSILENT into the FORTRAN source driver 
+	@echo routine Moogsilent.f !!!!!!!!!!!!
 	@echo
 	@echo NOTE: the isotop driver has been eliminated;
 	@echo your synthesis needs for elemental and isotopic
@@ -52,11 +51,11 @@ all: MOOG ;
 	@echo
 	@echo -----------------------------------------------------------------
 
-MOOG:  $(OBJECTS);
-	$(FC) $(OBJECTS) -o MOOG -L$(X11LIB) -lX11 \
+MOOGSILENT:  $(OBJECTS);
+	$(FC) $(OBJECTS) -o MOOGSILENT -L$(X11LIB) -lX11 \
         -L$(SMLIB) -lplotsub -ldevices -lutils
 
 $(OBJECTS): $(COMMON)
 
 clean:
-	-rm -f *.o MOOG libMOOG.a
+	-rm -f *.o MOOGSILENT libMOOGSILENT.a

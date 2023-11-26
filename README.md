@@ -1,3 +1,17 @@
+# RagnarVdB Moogsilent
+## Installatie
+In `Moogsilent.f`, line 22, change the path to the folder of this repository.
+You may also have to change the X11 library path in `Makefile` line 37.
+Then run:
+```sh
+make clean
+make
+```
+This will create the `MOOGSILENT` executable.
+
+
+-------
+
 # moog17scat
 MOOG 2017 version with scattering
 
