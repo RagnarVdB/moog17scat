@@ -19,12 +19,13 @@ c******************************************************************************
 10       choice = 'y'
          plotroutine = 'term_port_abun'
          lscreen = maxline -2
-         call makeplot (lscreen)
-         array = 'WHAT TO DO NEXT ([n]/h/f/r/m/v)? '
-         lscreen = lscreen + 2
-         nchars = 35
-         call getasci (nchars,maxline)
-         choice = chinfo(1:1)
+         ! call makeplot (lscreen)
+         ! array = 'WHAT TO DO NEXT ([n]/h/f/r/m/v)? '
+         ! lscreen = lscreen + 2
+         ! nchars = 35
+         ! call getasci (nchars,maxline)
+         ! choice = chinfo(1:1)
+         choice = 'n'
          if (choice.eq.'n' .or. nchars.le.0) then
             return
          elseif (choice .eq. 'm') then
