@@ -30,12 +30,8 @@ COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
         Mol.com Multistar.com Obspars.com Plotval.com Pstuff.com \
         Quants.com Multimod.com Dampdat.com Source.com
 
-CC = cc
 FC = gfortran -m64 -Wall -O4 -ffixed-line-length-72 -ff2c -std=legacy
 
-# the following lines point to some needed libraries
-X11LIB = /usr/lib64
-SMLIB = lib/smlib/
 
 #        here are the compilation and linking commands
 all: MOOGSILENT ;
@@ -52,8 +48,7 @@ all: MOOGSILENT ;
 	@echo -----------------------------------------------------------------
 
 MOOGSILENT:  $(OBJECTS);
-	$(FC) $(OBJECTS) -o MOOGSILENT -L$(X11LIB) -lX11 \
-        -L$(SMLIB) -lplotsub -ldevices -lutils
+	$(FC) $(OBJECTS) -o MOOGSILENT
 
 $(OBJECTS): $(COMMON)
 
